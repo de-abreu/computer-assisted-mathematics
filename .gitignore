@@ -23,3 +23,6 @@ devenv.local.yaml
 # Octave
 octave-workspace
 *.png # Generated plot images
+
+# Opencode
+.opencode/

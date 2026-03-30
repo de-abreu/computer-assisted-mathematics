@@ -37,7 +37,7 @@ function [x, iterations] = gaussSeidel (A, b, tol, max_iter)
   % --- 1. Prepossessing: pivot rows to assure a diagonally dominant A ---
   [A, b] = partialPivot (A, b);
 
-  % --- 2. Solve iteratively. An implementation Gauss-Seidel formula ---
+  % --- 2. Solve iteratively. ---
   [n, ~] = size (A);
   x = zeros (n, 1);
 

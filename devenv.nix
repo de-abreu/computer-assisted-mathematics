@@ -16,17 +16,17 @@
 
   # Script for 2D plotting validation
   scripts.test-plot.exec = ''
-    octave --eval "test_plot"
+    octave --eval "test.plot"
   '';
 
   # Script for interactive 3D visualization
   scripts.test-plot-3d.exec = ''
-    octave --eval "test_plot_3d"
+    octave --eval "test.plot_3d"
   '';
 
   # Script for iterative methods test
   scripts.test-iterative.exec = ''
-    octave --eval "test_iterative_methods"
+    octave --eval "test.iterative_methods"
   '';
 
   enterShell = ''
