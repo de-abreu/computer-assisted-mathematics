@@ -23,12 +23,6 @@ function [A, b] = partialPivot (A, b)
     % We convert it back to the global matrix index.
     pivot_row = max_idx + i - 1;
 
-    % If the largest value is 0, the matrix is singular and cannot be solved.
-    if val == 0
-      warning ("partialPivot: Column %d is all zeros. Matrix may be singular.", i);
-      continue;
-    endif
-
     % Swap the current row with the pivot row in both A and b
     if pivot_row ~= i
       A([i, pivot_row], :) = A([pivot_row, i], :);

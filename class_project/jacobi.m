@@ -37,10 +37,18 @@ function [x, iterations] = jacobi (A, b, tol, max_iter)
   if nargin < 3, tol = 1e-6; end
   if nargin < 4, max_iter = 100; end
 
-  % --- 1. Prepossessing: pivot rows to assure a diagonally dominant A ---
+  % --- 1. Validate system has a unique solution ---
+  validateSystem (A, b);
+
+  % --- 2. Prepossessing: pivot rows to assure a diagonally dominant A ---
   [A, b] = partialPivot (A, b);
 
   [n, ~] = size (A);
+  x = zeros (n, 1);
+  D = diag (A);          % Extract the diagonal elements
+  R = A - diag (D);      % Remainder matrix (A with zeros on the diagonal)
+
+  % --- 3. Iteration ---
   x = zeros (n, 1);
   D = diag (A);          % Extract the diagonal elements
   R = A - diag (D);      % Remainder matrix (A with zeros on the diagonal)

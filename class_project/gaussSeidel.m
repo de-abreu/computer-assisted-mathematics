@@ -34,10 +34,13 @@ function [x, iterations] = gaussSeidel (A, b, tol, max_iter)
   if nargin < 3, tol = 1e-6; end
   if nargin < 4, max_iter = 100; end
 
-  % --- 1. Prepossessing: pivot rows to assure a diagonally dominant A ---
+  % --- 1. Validate system has a unique solution ---
+  validateSystem (A, b);
+
+  % --- 2. Prepossessing: pivot rows to assure a diagonally dominant A ---
   [A, b] = partialPivot (A, b);
 
-  % --- 2. Solve iteratively. ---
+  % --- 3. Solve iteratively. ---
   [n, ~] = size (A);
   x = zeros (n, 1);
 

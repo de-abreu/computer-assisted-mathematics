@@ -2,31 +2,37 @@
   pkgs,
   ...
 }:
-
 {
-  packages = with pkgs; [
-    octaveFull
-    gnuplot
-    ghostscript
-    freefont_ttf
-    fontconfig
-  ];
+  packages =
+    with pkgs;
+    let
+      myOctave = octaveFull.override {
+        enableQt = true;
+      };
+      octaveWithPackages = myOctave.withPackages (ps: [ ps.symbolic ]);
+    in
+    [
+      octaveWithPackages
+      ghostscript
+      freefont_ttf
+      fontconfig
+    ];
 
   env.FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
 
   # Script for 2D plotting validation
   scripts.test-plot.exec = ''
-    octave --eval "test.plot"
+    octave --eval "class_project.test.plot"
   '';
 
   # Script for interactive 3D visualization
   scripts.test-plot-3d.exec = ''
-    octave --eval "test.plot_3d"
+    octave --eval "class_project.test.plot_3d"
   '';
 
   # Script for iterative methods test
   scripts.test-iterative.exec = ''
-    octave --eval "test.iterative_methods"
+    octave --eval "class_project.test.iterative_methods"
   '';
 
   enterShell = ''
