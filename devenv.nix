@@ -10,13 +10,17 @@
         enableQt = true;
       };
       octaveWithPackages = myOctave.withPackages (ps: [ ps.symbolic ]);
+      exportDependencies = [
+        ghostscript
+        freefont_ttf
+        fontconfig
+      ];
     in
     [
       octaveWithPackages
-      ghostscript
-      freefont_ttf
-      fontconfig
-    ];
+      geogebra
+    ]
+    ++ exportDependencies;
 
   env.FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
 
