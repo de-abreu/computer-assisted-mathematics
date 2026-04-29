@@ -11,12 +11,11 @@ options = optimset('Tolx', 1e-6);
 % Find root near midpoint
 [x, fval, exitflag, output] = fzero(@eqtrans, mid, options);
 
-disp(['Root: x = ', num2str(x)]);
-disp(['Iterations: ', num2str(output.iterations)]);
-
 % Check if solution is in range
-if x >= a && x <= b
+if exitflag > 0
     fprintf('Solution x = %.6f is in range [%.1f, %.1f]\n', x, a, b);
+    disp(['Root: x = ', num2str(x)]);
+    disp(['Iterations: ', num2str(output.iterations)]);
 else
     fprintf('Solution x = %.6f is outside range [%.1f, %.1f]\n', x, a, b);
 end
