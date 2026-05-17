@@ -9,7 +9,7 @@ function inter_plot(x, y)
 
   plot(x, y, 'bd')
   hold on
-  plot(vx, vyl, 'r', vx, vys, '--g')
+  plot(vx, vyl, 'r', vx, vys, '--b')
   axis([min(x)-1 max(x)+1, min([y vyl vys])-5 max([y vyl vys])+5])
   legend('points', 'linear', 'spline')
   hold off
